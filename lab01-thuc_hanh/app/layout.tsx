@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 export const metadata: Metadata = {
-  title: "CTK46 - Lab 01",
+  title: "CTK46A - Lab 01",
   description: "Bài thực hành 1 - Các công nghệ mới trong PTPM",
 };
 export default function RootLayout({

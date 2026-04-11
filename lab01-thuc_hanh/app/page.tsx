@@ -4,13 +4,20 @@ export default function Home() {
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">Xin chào! 👋</h1>
         <p className="text-xl text-gray-600 mb-2">
-          Họ và tên: <strong>Nguyễn Văn A</strong>
+          Họ và tên: <strong>Ngô Bá Tài</strong>
         </p>
         <p className="text-xl text-gray-600 mb-2">
-          MSSV: <strong>2112345</strong>
+          MSSV: <strong>2212453</strong>
         </p>
+        <p className="text-xl text-gray-600 mb-6">Lớp: CTK46A</p>
         <p className="text-xl text-gray-600 mb-6">
           Môn: Các công nghệ mới trong PTPM
+        </p>
+        <p className="text-xl text-gray-600 mb-6">
+          Sở thích: Chơi minecraft, tft
+        </p>
+        <p className="text-xl text-gray-600 mb-6">
+          Mục tiêu học tập: Vua coder
         </p>
         <div className="bg-blue-100 rounded-lg p-4">
           <p className="text-blue-800">
