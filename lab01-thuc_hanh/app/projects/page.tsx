@@ -6,15 +6,16 @@ const projects = [
     status: "Đang phát triển",
   },
   {
-    title: "Ứng dụng Quản lý Công việc",
-    description: "Ứng dụng Todo App với React và Local Storage",
+    title: "Website quản lý tài nguyên học tập",
+    description: "Website giúp người dùng lưu trữ, chia sẻ tài liệu học tập",
     tech: ["React", "CSS Modules", "JavaScript"],
     status: "Hoàn thành",
   },
   {
-    title: "API RESTful",
-    description: "API quản lý sản phẩm với Node.js và Express",
-    tech: ["Node.js", "Express", "MongoDB"],
+    title: "Xây dựng ứng dụng gợi ý lịch trình du lịch Đà Lạt thông minh",
+    description:
+      "Ứng dụng sử dụng gemini để gợi ý lịch trình du lịch dựa trên danh sách địa điểm có sẵn",
+    tech: ["Ionic", "Angular", "Express"],
     status: "Hoàn thành",
   },
   {

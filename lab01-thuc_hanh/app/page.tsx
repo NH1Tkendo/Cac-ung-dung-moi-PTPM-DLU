@@ -48,7 +48,7 @@ items-center justify-center"
           ].map((skill) => (
             <div
               key={skill}
-              className="bg-gray-50 rounded-lg p-4 text-center hover:bg-blue-50
+              className="bg-black-50 rounded-lg p-4 text-center hover:bg-blue-50
 hover:text-blue-600 transition-colors"
             >
               {skill}
