@@ -1,7 +1,17 @@
 import Link from "next/link";
+import Counter from "@/components/counter";
+import ThemeToggle from "@/components/theme-toggle";
+import CopyButton from "@/components/copy-button";
+
 export default function HomePage() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-16">
+      {/* Top right actions */}
+      <div className="absolute top-4 right-4 flex gap-4">
+        <ThemeToggle />
+        <CopyButton textToCopy="https://example.com/portfolio" />
+      </div>
+
       {/* Hero section */}
       <div className="text-center mb-16">
         <div
@@ -30,6 +40,10 @@ items-center justify-center"
           >
             Liên hệ
           </Link>
+        </div>
+
+        <div className="mt-8 flex justify-center">
+          <Counter />
         </div>
       </div>
       {/* Skills section */}
