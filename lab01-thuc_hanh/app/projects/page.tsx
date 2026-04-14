@@ -5,14 +5,22 @@ const projects = [
     tech: ["Next.JS", "Tailwind CSS", "TypeScript"],
   },
   {
-    title: "Ứng dụng Quản lý Công việc",
-    description: "Ứng dụng Todo App với React và Local Storage",
-    tech: ["React", "CSS Modules", "JavaScript"],
+    title: "Ứng dụng gợi ý lịch trình du lịch Đà Lạt thông minh",
+    description:
+      "Ứng dụng sử dụng Gemini để gợi ý các địa điểm nên du lịch trong Đà Lạt theo sở thích người dùng",
+    tech: [
+      "Angular",
+      "Ionic",
+      "TypeScript|JavaScript",
+      "Express",
+      "PostgreSQL",
+    ],
   },
   {
-    title: "API RESTful",
-    description: "API quản lý sản phẩm với Node.js và Express",
-    tech: ["Node.js", "Express", "MongoDB"],
+    title: "Ứng dụng quản lý tài nguyên học tập",
+    description:
+      "Ứng dụng cho phép người dùng lưu trữ, chia sẻ các tài liệu học tập",
+    tech: ["React", "Express", "PostgreSQL"],
   },
 ];
 export default function ProjectsPage() {

@@ -5,7 +5,7 @@ export default function Navbar() {
       <div className="max-w-5xl mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-xl font-bold text-blue-600">
-            Portfolio
+            Ngô Bá Tài
           </Link>
           <div className="flex gap-6">
             <Link
