@@ -19,9 +19,12 @@ export default function NotFound() {
         </svg>
       </div>
       <h1 className="text-6xl font-bold text-blue-600 mb-4">404</h1>
-      <h2 className="text-2xl font-bold mb-4 text-gray-800">Trang không tồn tại</h2>
+      <h2 className="text-2xl font-bold mb-4 text-gray-800">
+        Trang không tồn tại
+      </h2>
       <p className="text-gray-600 mb-8 max-w-md mx-auto">
-        Xin lỗi, trang bạn đang tìm kiếm không có trên website này hoặc đã bị chuyển đi.
+        Xin lỗi, trang bạn đang tìm kiếm không có trên website này hoặc đã bị
+        chuyển đi.
       </p>
       <Link
         href="/"

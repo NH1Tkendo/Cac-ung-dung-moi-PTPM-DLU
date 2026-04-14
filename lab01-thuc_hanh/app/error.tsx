@@ -20,7 +20,8 @@ export default function Error({
         Đã có lỗi xảy ra!
       </h2>
       <p className="text-gray-600 mb-8 max-w-md">
-        Rất tiếc, hệ thống đã gặp sự cố trong quá trình xử lý yêu cầu của bạn. Vui lòng thử lại.
+        Rất tiếc, hệ thống đã gặp sự cố trong quá trình xử lý yêu cầu của bạn.
+        Vui lòng thử lại.
       </p>
       <button
         onClick={() => reset()}
