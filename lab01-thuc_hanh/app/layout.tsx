@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Navbar from "./components/navbar";
+import Footer from "./components/footer";
+
 export const metadata: Metadata = {
-  title: "CTK46A - Lab 01",
-  description: "Bài thực hành 1 - Các công nghệ mới trong PTPM",
+  title: "Portfolio — Ngô Bá Tài",
+  description: "Website portfolio cá nhân — CTK46A",
 };
 export default function RootLayout({
   children,
@@ -11,7 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body>{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1">{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }
