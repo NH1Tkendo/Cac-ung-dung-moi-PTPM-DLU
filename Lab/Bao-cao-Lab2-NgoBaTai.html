@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Báo cáo Lab 2 - Ngô Bá Tài - Next.js Routing</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/dracula.min.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/monokai.min.css">
+    
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+        }
+        .highlight-blue { color: #61afef; }
+        .highlight-green { color: #98c379; }
+        .highlight-yellow { color: #e5c07b; }
+        .code-block {
+            background: #282c34;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 0.8em !important;
+        }
+        ul { font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Slide 1: Title -->
+            <section data-background-gradient="linear-gradient(to bottom, #283048, #859398)">
+                <h1>BÁO CÁO KẾT QUẢ LAB 2</h1>
+                <h3 class="highlight-blue">NEXT.JS NỀN TẢNG & ROUTING</h3>
+                <p>
+                    <small>Sinh viên: <b>Ngô Bá Tài</b> - CTK46A</small><br>
+                    <small>Môn: Các công nghệ mới trong PTPM</small>
+                </p>
+                <img src="https://nextjs.org/static/favicon/safari-pinned-tab.svg" width="50" style="background: white; border-radius: 50%; padding: 5px;">
+            </section>
+
+            <!-- Slide 2: Objectives -->
+            <section>
+                <h2>Mục Tiêu Bài Thực Hành</h2>
+                <ul>
+                    <li>Nắm vững kiến trúc <span class="highlight-blue">App Router</span> (Next.js 13+).</li>
+                    <li>Triển khai cơ chế <span class="highlight-green">File-based Routing</span>.</li>
+                    <li>Xây dựng <span class="highlight-yellow">Nested Layouts</span> và <span class="highlight-yellow">Dynamic Routes</span>.</li>
+                    <li>Tối ưu trải nghiệm với Loading States & Error Boundaries.</li>
+                    <li>Phân biệt Server vs Client Components.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 3: Architecture -->
+            <section>
+                <h2>Kiến Trúc App Router</h2>
+                <div style="display: flex; gap: 20px; align-items: center;">
+                    <div style="flex: 1;">
+                        <ul style="font-size: 0.7em;">
+                            <li><b class="highlight-blue">layout.tsx</b>: Khung giao diện dùng chung.</li>
+                            <li><b class="highlight-blue">page.tsx</b>: Nội dung trang chính.</li>
+                            <li><b class="highlight-blue">loading.tsx</b>: UI khi đang tải (Skeleton).</li>
+                            <li><b class="highlight-blue">error.tsx</b>: Xử lý lỗi Runtime.</li>
+                            <li><b class="highlight-blue">not-found.tsx</b>: Trang 404 tùy chỉnh.</li>
+                        </ul>
+                    </div>
+                    <div class="code-block" style="flex: 1; text-align: left; font-size: 0.6em !important;">
+                        src/app/<br>
+                        ├── layout.tsx (Root)<br>
+                        ├── page.tsx (Home)<br>
+                        ├── about/page.tsx<br>
+                        ├── blog/<br>
+                        │   ├── layout.tsx<br>
+                        │   ├── page.tsx<br>
+                        │   └── [slug]/page.tsx<br>
+                        └── projects/page.tsx
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: Web Structure -->
+            <section>
+                <h2>Cấu Trúc Website Đã Làm</h2>
+                <div style="font-size: 0.8em;">
+                    <p>Hệ thống Portfolio hoàn chỉnh với 5+ phân vùng:</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Trang</th>
+                                <th>URL</th>
+                                <th>Tính năng</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: 0.8em;">
+                            <tr><td>Trang chủ</td><td>/</td><td>Hero, Counter, Skills</td></tr>
+                            <tr><td>Giới thiệu</td><td>/about</td><td>Thông tin, Học vấn</td></tr>
+                            <tr><td>Dự án</td><td>/projects</td><td>Grid Responsive, Tech Tags</td></tr>
+                            <tr><td>Blog</td><td>/blog</td><td>Danh sách bài viết, Sidebar</td></tr>
+                            <tr><td>Chi tiết</td><td>/blog/[slug]</td><td>Dynamic content, Like button</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Slide 5: Advanced Routing -->
+            <section>
+                <h2>Routing Nâng Cao</h2>
+                <div style="display: flex; gap: 20px;">
+                    <div style="flex: 1;">
+                        <h4 class="highlight-yellow">Dynamic Routes</h4>
+                        <p style="font-size: 0.7em;">Sử dụng <code>[slug]</code> để hiển thị bài viết từ dữ liệu động. Tích hợp <code>notFound()</code> khi slug không tồn tại.</p>
+                    </div>
+                    <div style="flex: 1;">
+                        <h4 class="highlight-yellow">Nested Layouts</h4>
+                        <p style="font-size: 0.7em;">Trang Blog có Layout riêng chứa Sidebar danh mục, lồng bên trong Root Layout của ứng dụng.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 6: UX Optimization -->
+            <section>
+                <h2>Tối Ưu Trải Nghiệm (UX)</h2>
+                <ul>
+                    <li><b class="highlight-green">Skeleton Loading</b>: Hiệu ứng <code>animate-pulse</code> giúp người dùng không phải chờ đợi màn hình trắng.</li>
+                    <li><b class="highlight-green">Error Boundary</b>: Cô lập lỗi tại component cụ thể, giữ cho phần còn lại của web (Navbar/Footer) vẫn hoạt động.</li>
+                    <li><b class="highlight-green">Custom 404</b>: Thiết kế trang lỗi sinh động với SVG và điều hướng thông minh.</li>
+                </ul>
+            </section>
+
+            <!-- Slide 7: UI & Responsive -->
+            <section>
+                <h2>Giao Diện (Tailwind CSS)</h2>
+                <div style="font-size: 0.8em;">
+                    <p>Áp dụng triết lý <span class="highlight-blue">Mobile-First</span>:</p>
+                    <div class="code-block" style="text-align: left;">
+                        &lt;div class="grid grid-cols-1 md:grid-cols-2 gap-6"&gt;
+                    </div>
+                    <ul style="margin-top: 20px;">
+                        <li>Tương thích mọi thiết bị (Mobile, Tablet, Desktop).</li>
+                        <li>Sử dụng các hiệu ứng Hover, Transition mượt mà.</li>
+                        <li>Hệ thống màu sắc hiện đại, chuyên nghiệp.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Slide 8: Server vs Client -->
+            <section>
+                <h2>Server vs Client Components</h2>
+                <div style="display: flex; gap: 10px; font-size: 0.7em;">
+                    <div style="flex: 1; border: 1px solid #444; padding: 10px;">
+                        <h4 class="highlight-blue">Server (Default)</h4>
+                        <ul>
+                            <li>Navbar, Footer, Pages.</li>
+                            <li>Render trên server.</li>
+                            <li>Tốc độ tải nhanh, tốt cho SEO.</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1; border: 1px solid #444; padding: 10px;">
+                        <h4 class="highlight-green">Client ("use client")</h4>
+                        <ul>
+                            <li>Counter, LikeButton.</li>
+                            <li>ThemeToggle, CopyButton.</li>
+                            <li>Xử lý tương tác, State, Hooks.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 9: Conclusion -->
+            <section>
+                <h2>Kết Quả Đạt Được</h2>
+                <ol>
+                    <li>Hoàn thành 100% yêu cầu bài Lab 2.</li>
+                    <li>Sản phẩm chạy ổn định trên môi trường Development.</li>
+                    <li>Cấu trúc code sạch, áp dụng đúng chuẩn Next.js 15.</li>
+                    <li>Sẵn sàng cho việc tích hợp Database ở buổi sau.</li>
+                </ol>
+            </section>
+
+            <!-- Slide 10: Thank you -->
+            <section data-background-color="#282c34">
+                <h1 class="highlight-blue">CẢM ƠN!</h1>
+                <p>Thầy và các bạn đã lắng nghe</p>
+                <div style="margin-top: 50px; font-size: 0.6em;">
+                    <p>Email: 2212453@dlu.edu.vn</p>
+                    <p>GitHub: github.com/NH1Tkendo</p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            plugins: [ RevealHighlight ],
+            slideNumber: 'c/t',
+            transition: 'convex'
+        });
+    </script>
+</body>
+</html>

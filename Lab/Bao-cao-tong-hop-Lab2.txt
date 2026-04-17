@@ -1,0 +1,72 @@
+TỔNG HỢP KẾT QUẢ THỰC HÀNH LAB 2 - NEXT.JS NỀN TẢNG & ROUTING
+Sinh viên thực hiện: Ngô Bá Tài
+Lớp: CTK46A
+Dự án: Portfolio & Blog Cá nhân (Next.js 15+, Tailwind CSS 4)
+
+-------------------------------------------------------------------------------
+1. KIẾN TRÚC HỆ THỐNG & APP ROUTER (Hoàn thành Phần 1)
+-------------------------------------------------------------------------------
+- Đã triển khai cấu trúc thư mục chuẩn App Router trong thư mục `app/`.
+- Sử dụng đầy đủ các file đặc biệt theo yêu cầu:
+  + page.tsx: Cho các trang nội dung.
+  + layout.tsx: Cho giao diện dùng chung (Root Layout và Blog Layout).
+  + loading.tsx: Xử lý trạng thái chờ (Skeleton loading).
+  + error.tsx: Xử lý lỗi runtime (Error Boundary).
+  + not-found.tsx: Trang lỗi 404 tùy chỉnh.
+
+-------------------------------------------------------------------------------
+2. PAGES & NESTED LAYOUTS (Hoàn thành Phần 2)
+-------------------------------------------------------------------------------
+- Root Layout: Tích hợp Navbar và Footer cho toàn bộ ứng dụng.
+- Navbar (app/components/navbar.tsx): Có logo tên riêng "Ngô Bá Tài" và các liên kết điều hướng.
+- Footer (app/components/footer.tsx): Thông tin bản quyền năm 2026.
+- Các trang cơ bản đã hoàn thành với nội dung cá nhân hóa:
+  + Trang chủ (/): Có Hero section, lời chào, và các nút điều hướng.
+  + Giới thiệu (/about): Thông tin cá nhân, kỹ năng và học vấn (2022-2026).
+  + Dự án (/projects): Danh sách 4 dự án (vượt yêu cầu 3 dự án của bài lab).
+  + Liên hệ (/contact): Thông tin Email (2212453@dlu.edu.vn), GitHub, Địa chỉ.
+  + Kỹ năng (/skills): Trang bổ sung liệt kê kỹ năng lập trình theo cấp độ (Best/Normal).
+- Nested Layout: Đã tạo Layout riêng cho trang Blog (/app/blog/layout.tsx) có Sidebar chứa danh mục.
+
+-------------------------------------------------------------------------------
+3. DYNAMIC ROUTES & ROUTE GROUPS (Hoàn thành Phần 3)
+-------------------------------------------------------------------------------
+- Dữ liệu Mock: Đã tạo file dữ liệu `data/post.ts` chứa danh sách bài viết mẫu.
+- Trang danh sách Blog (/blog): Hiển thị danh sách các bài viết với link điều hướng động.
+- Dynamic Route (/blog/[slug]): Trang chi tiết bài viết xử lý tham số slug động.
+- Đã triển khai hàm `generateStaticParams()` để tối ưu hóa việc pre-render bài viết tĩnh.
+
+-------------------------------------------------------------------------------
+4. LOADING STATE & ERROR BOUNDARIES (Hoàn thành Phần 4)
+-------------------------------------------------------------------------------
+- Skeleton Loading: Đã tạo giao diện chờ cho cả trang danh sách blog và trang chi tiết bài viết với hiệu ứng `animate-pulse`.
+- Error Handling: Đã tạo file `error.tsx` ở cấp root và cấp blog để cô lập lỗi.
+- Custom 404: Trang `not-found.tsx` được thiết kế đẹp mắt với hình ảnh minh họa SVG và hiệu ứng `animate-bounce`.
+
+-------------------------------------------------------------------------------
+5. TAILWIND CSS & RESPONSIVE DESIGN (Hoàn thành Phần 5)
+-------------------------------------------------------------------------------
+- Utility-first: Sử dụng triệt để các class Tailwind để thiết kế giao diện không cần file CSS thủ công.
+- Responsive Grid: Trang Dự án và trang chủ sử dụng Grid tự động thay đổi số cột tùy theo kích thước màn hình (mobile-first).
+- UI/UX: Áp dụng các hiệu ứng Hover, Transition, Shadow và bo góc (Rounded) chuyên nghiệp.
+
+-------------------------------------------------------------------------------
+6. SERVER VS CLIENT COMPONENTS (Hoàn thành Phần 6 & Bài tập nâng cao)
+-------------------------------------------------------------------------------
+- Đã phân biệt và sử dụng đúng loại Component:
+  + Server Components: Navbar, Footer, Các trang nội dung (About, Projects, Contact).
+  + Client Components ("use client"):
+    * Counter (app/components/counter.tsx): Bộ đếm số lượng.
+    * LikeButton (app/components/like-button.tsx): Nút tim bài viết (đã tích hợp vào trang chi tiết Blog).
+    * ThemeToggle (app/components/theme-toggle.tsx): Chuyển đổi giao diện sáng/tối.
+    * CopyButton (app/components/copy-button.tsx): Nút sao chép link liên kết.
+
+-------------------------------------------------------------------------------
+7. CÁC ĐIỂM NỔI BẬT KHÁC (Cá nhân hóa)
+-------------------------------------------------------------------------------
+- Đã tích hợp ThemeToggle và CopyButton vào trang chủ để tăng tính tiện ích.
+- Danh sách dự án đa dạng, bao gồm cả dự án sử dụng AI (Gemini) để gợi ý du lịch Đà Lạt.
+- Cấu trúc code sạch sẽ, tuân thủ các quy chuẩn của Next.js 15 và TypeScript.
+
+-------------------------------------------------------------------------------
+KẾT LUẬN: Đã hoàn thành 100% nội dung yêu cầu của Bài thực hành 2 và thực hiện đầy đủ các bài tập tự làm nâng cao.
