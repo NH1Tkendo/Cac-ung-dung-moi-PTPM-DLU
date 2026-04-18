@@ -5,15 +5,15 @@ import CopyButton from "@/components/copy-button";
 
 export default function HomePage() {
   return (
-    <div className="max-w-5xl mx-auto px-4 py-16">
+    <div className="max-w-5xl mx-auto px-4 py-16 relative">
       {/* Top right actions */}
-      <div className="absolute top-4 right-4 flex gap-4">
+      <div className="absolute top-0 right-4 flex gap-4">
         <ThemeToggle />
         <CopyButton textToCopy="https://example.com/portfolio" />
       </div>
 
       {/* Hero section */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-16 mt-12">
         <div
           className="w-24 h-24 bg-blue-100 rounded-full mx-auto mb-6 flex
 items-center justify-center"

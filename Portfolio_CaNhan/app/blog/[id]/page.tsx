@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Post, User } from "@/types/post";
+import { Post, User, Comment } from "@/types/post";
 import LikeButton from "@/components/like-button";
 
 interface BlogPostPageProps {
@@ -10,6 +10,7 @@ interface BlogPostPageProps {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { id } = await params;
 
+  // Lấy dữ liệu bài viết
   const postRes = await fetch(
     `https://jsonplaceholder.typicode.com/posts/${id}`,
   );
@@ -20,10 +21,14 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const post: Post = await postRes.json();
 
-  const userRes = await fetch(
-    `https://jsonplaceholder.typicode.com/users/${post.userId}`,
-  );
+  // Chạy song song request lấy user và comments bằng Promise.all
+  const [userRes, commentsRes] = await Promise.all([
+    fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`),
+    fetch(`https://jsonplaceholder.typicode.com/posts/${id}/comments`),
+  ]);
+
   const user: User = await userRes.json();
+  const comments: Comment[] = await commentsRes.json();
 
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
@@ -49,6 +54,22 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <LikeButton />
         </div>
       </article>
+
+      {/* Hiển thị Comments */}
+      <div className="mt-12 pt-8 border-t">
+        <h2 className="text-2xl font-bold mb-6">
+          Bình luận ({comments.length})
+        </h2>
+        <div className="space-y-6">
+          {comments.map((comment) => (
+            <div key={comment.id} className="bg-gray-50 p-4 rounded-lg">
+              <div className="font-semibold mb-1">{comment.name}</div>
+              <div className="text-sm text-gray-500 mb-3">{comment.email}</div>
+              <p className="text-gray-700">{comment.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
