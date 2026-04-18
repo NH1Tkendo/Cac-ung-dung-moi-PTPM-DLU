@@ -38,6 +38,12 @@ export default function Navbar() {
             >
               Liên hệ
             </Link>
+            <Link
+              href="/guestbook"
+              className="text-gray-600 hover:text-blue-600 transition-colors"
+            >
+              Lưu bút
+            </Link>
           </div>
         </div>
       </div>
