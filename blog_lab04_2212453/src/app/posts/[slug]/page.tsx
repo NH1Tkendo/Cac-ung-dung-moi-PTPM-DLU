@@ -1,6 +1,7 @@
 import { createClient } from "@/src/lib/supabase/server";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { LikeButton } from "@/src/components/post/like-button";
 
 type Params = Promise<{ slug: string }>;
 
@@ -31,6 +32,10 @@ export default async function PostPage({ params }: PostPageProps) {
   const decodedSlug = decodeURIComponent(resolvedParams.slug);
 
   const supabase = await createClient();
+  
+  // Get current user if logged in
+  const { data: { user } } = await supabase.auth.getUser();
+  
   const { data: post, error } = await supabase
     .from("posts")
     .select(
@@ -45,9 +50,30 @@ export default async function PostPage({ params }: PostPageProps) {
     .eq("slug", decodedSlug)
     .eq("status", "published")
     .single();
+
   if (error || !post) {
     notFound();
   }
+
+  // Fetch likes count
+  const { count: likeCount } = await supabase
+    .from("likes")
+    .select("*", { count: "exact", head: true })
+    .eq("post_id", post.id);
+
+  // Check if current user has liked this post
+  let hasLiked = false;
+  if (user) {
+    const { data: likeData } = await supabase
+      .from("likes")
+      .select("id")
+      .eq("post_id", post.id)
+      .eq("user_id", user.id)
+      .single();
+      
+    hasLiked = !!likeData;
+  }
+
   return (
     <main className="max-w-3xl mx-auto px-4 py-8">
       <article>
@@ -76,6 +102,12 @@ export default async function PostPage({ params }: PostPageProps) {
               <p key={index}>{paragraph}</p>
             ))}
         </div>
+        
+        <LikeButton 
+          postId={post.id} 
+          initialLikeCount={likeCount || 0} 
+          initialHasLiked={hasLiked} 
+        />
       </article>
     </main>
   );
